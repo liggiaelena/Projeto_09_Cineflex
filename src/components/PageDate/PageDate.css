@@ -9,7 +9,7 @@
         margin-bottom: 67px;
 
 }
-.date{
+.dates{
     width: 90%;
     height: auto;
     margin-left: 20px;
@@ -20,6 +20,7 @@
     letter-spacing: 0.02em;
     color: #293845;
     margin-top: 5px;
+    margin-bottom: 120px;
     
 }
 .time-options{
