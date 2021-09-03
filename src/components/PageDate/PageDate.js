@@ -3,9 +3,12 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import {Link} from "react-router-dom"
+import Bottom from "../Bottom/Bottom"
 
 export default function PageDate( ){
     const [days, setDays]=useState([]);
+    const [movieTitle, setMovieTitle]= useState("");
+    const [posterURL, setPosterURL]= useState("");
     const params = useParams();
     console.log(params)
 
@@ -13,6 +16,8 @@ export default function PageDate( ){
          const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies/${params.idFilme}/showtimes`)
          promisse.then((response)=>{
             setDays(response.data.days);
+            setMovieTitle(response.data.title);
+            setPosterURL(response.data.posterURL);
             console.log(response.data)
          })
      },[])
@@ -36,7 +41,7 @@ export default function PageDate( ){
                 )}
             </div>
                
-            
+            <Bottom movieTitle={movieTitle} posterURL={posterURL}/> 
         </div>
     );
 }

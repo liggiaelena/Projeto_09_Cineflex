@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./CSS/reset.css"
 import "./CSS/styles.css"
+import {useState } from "react";
 import Top from "./components/Top/Top";
 import PageMovie from './components/PageMovie/PageMovie';
 import PageDate from './components/PageDate/PageDate';
@@ -10,6 +11,9 @@ import PageFinished from './components/PageFinished/PageFinished';
 import Bottom from './components/Bottom/Bottom';
 
 function Root(){
+
+    const[info,setInfo]=useState([]);
+
     return(
         <BrowserRouter>
           <Top key={7}/>
@@ -23,7 +27,7 @@ function Root(){
                 </Route>
                 <Route path="/assentos/:idSessao" exact>
                     <PageSeats key={4}/> 
-                    <Bottom key={5}/> 
+                    
                 </Route>
                 <Route path="/sucesso" exact>
                     <PageFinished key={6}/>
@@ -34,5 +38,5 @@ function Root(){
     );
 }
 
-ReactDOM.render(<Root />, document.querySelector(".root"));
+ReactDOM.render(<Root key={8}/>, document.querySelector(".root"));
 

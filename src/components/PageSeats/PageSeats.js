@@ -2,11 +2,11 @@ import "./PageSeats.css";
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Seat from "./Seat";
 
 export default function PageSeats(){
     const [seats, setSeats]=useState([]);
     const params = useParams();
-   // const [seatColor, setSeatColor]=useState("seat unavailable");
 
     useEffect(()=>{
 
@@ -19,15 +19,6 @@ export default function PageSeats(){
     },[]);
 
 
-    // function seatState(seat){
-    //     if(seat.isAvailable){
-    //         setSeatColor("seat available");
-    //         console.log("entrei")
-    //     }
-
-    //     return seatColor;
-    // }
-
     return(
         <div className="page">
              <div className="description-seats">
@@ -35,12 +26,8 @@ export default function PageSeats(){
             </div>
             <div className="seats">
                 {seats.map((seat)=>
-                    <div className="seat" >
-                        {seat.name}
-                    </div> 
+                    <Seat seat={seat}/>
                 )}
-               
-
             </div>
             <div className="subtitles">
                 <div className="subtitle">

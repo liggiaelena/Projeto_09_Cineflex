@@ -4,6 +4,7 @@ import {Link} from "react-router-dom"
 import axios from "axios";
 
 
+
 export default function Page(){
 
 const [movies, setMovies]= useState([]);
