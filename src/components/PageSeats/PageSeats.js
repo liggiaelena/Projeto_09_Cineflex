@@ -1,51 +1,45 @@
 import "./PageSeats.css";
+import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 export default function PageSeats(){
+    const [seats, setSeats]=useState([]);
+    const params = useParams();
+   // const [seatColor, setSeatColor]=useState("seat unavailable");
+
+    useEffect(()=>{
+
+        const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${params.idSessao}/seats`)
+        promisse.then((response)=>{
+            setSeats(response.data.seats);
+            console.log(response.data)
+        })
+
+    },[]);
+
+
+    // function seatState(seat){
+    //     if(seat.isAvailable){
+    //         setSeatColor("seat available");
+    //         console.log("entrei")
+    //     }
+
+    //     return seatColor;
+    // }
+
     return(
         <div className="page">
              <div className="description-seats">
             Selecione o(s) assento(s)
             </div>
             <div className="seats">
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
-                <div className="seat">
-                    01
-                </div> 
+                {seats.map((seat)=>
+                    <div className="seat" >
+                        {seat.name}
+                    </div> 
+                )}
+               
 
             </div>
             <div className="subtitles">

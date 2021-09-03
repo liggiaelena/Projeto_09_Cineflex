@@ -2,6 +2,7 @@ import "./PageDate.css";
 import axios from 'axios';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import {Link} from "react-router-dom"
 
 export default function PageDate( ){
     const [days, setDays]=useState([]);
@@ -12,6 +13,7 @@ export default function PageDate( ){
          const promisse = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies/${params.idFilme}/showtimes`)
          promisse.then((response)=>{
             setDays(response.data.days);
+            console.log(response.data)
          })
      },[])
 
@@ -25,9 +27,9 @@ export default function PageDate( ){
                         <p>{day.weekday} - {day.date}</p>
                         <div className="time-options">
                             {day.showtimes.map(({name,id})=>
-                                <div className="time">
+                                <Link className="time" to={`/assentos/${id}`}>
                                     {name}
-                                </div>
+                                </Link>
                             )}
                         </div>  
                     </div>

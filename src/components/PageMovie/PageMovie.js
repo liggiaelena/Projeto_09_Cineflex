@@ -13,6 +13,7 @@ useEffect(()=>{
 
     promisse.then((response)=>{
         setMovies(response.data);
+        console.log(response.data)
         
     });
 },[]);
