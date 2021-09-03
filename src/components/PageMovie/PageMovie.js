@@ -26,7 +26,7 @@ useEffect(()=>{
             <div className="movies">
                 {movies.map((movie)=>
                     <Link to={`/sessoes/${movie.id}`} className="movie">
-                    <img src={movie.posterURL} />
+                    <img src={movie.posterURL} alt=""/>
                     </Link>
                 )}
                 

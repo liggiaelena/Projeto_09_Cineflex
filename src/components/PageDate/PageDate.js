@@ -5,7 +5,9 @@ import { useParams } from "react-router";
 import {Link} from "react-router-dom"
 import Bottom from "../Bottom/Bottom"
 
-export default function PageDate( ){
+export default function PageDate(props){
+    const updateTitle=props.updateTitle;
+    const info=props.info;
     const [days, setDays]=useState([]);
     const [movieTitle, setMovieTitle]= useState("");
     const [posterURL, setPosterURL]= useState("");
@@ -18,7 +20,10 @@ export default function PageDate( ){
             setDays(response.data.days);
             setMovieTitle(response.data.title);
             setPosterURL(response.data.posterURL);
-            console.log(response.data)
+            console.log(response.data.title)
+            updateTitle(response.data.title);
+            console.log(info);
+            
          })
      },[])
 
@@ -41,7 +46,7 @@ export default function PageDate( ){
                 )}
             </div>
                
-            <Bottom movieTitle={movieTitle} posterURL={posterURL}/> 
+            <Bottom movieTitle={movieTitle} posterURL={posterURL} day=""/> 
         </div>
     );
 }

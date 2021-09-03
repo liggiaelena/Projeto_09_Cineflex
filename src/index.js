@@ -8,25 +8,32 @@ import PageMovie from './components/PageMovie/PageMovie';
 import PageDate from './components/PageDate/PageDate';
 import PageSeats from './components/PageSeats/PageSeats';
 import PageFinished from './components/PageFinished/PageFinished';
-import Bottom from './components/Bottom/Bottom';
+
 
 function Root(){
 
-    const[info,setInfo]=useState([]);
+    const[info,setInfo]=useState({});
+
+    function updateTitle(title){
+        setInfo({...info,title});
+    }
+    function updateDayAndTime(date){
+        setInfo({...info,date});
+    }
 
     return(
         <BrowserRouter>
           <Top key={7}/>
             <Switch>
                 <Route path="/" exact>
-                    <PageMovie key={1}/> 
+                    <PageMovie key={1} /> 
                 </Route>
                 <Route path="/sessoes/:idFilme" exact>
-                    <PageDate key={2}/> 
-                    <Bottom key={3}/> 
+                    <PageDate key={2} updateTitle={updateTitle} info={info}/> 
+                    
                 </Route>
                 <Route path="/assentos/:idSessao" exact>
-                    <PageSeats key={4}/> 
+                    <PageSeats key={4}  updateDayAndTime={updateDayAndTime} info={info}/> 
                     
                 </Route>
                 <Route path="/sucesso" exact>

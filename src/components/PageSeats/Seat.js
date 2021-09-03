@@ -8,7 +8,7 @@ export default function Seat(props){
     function seatSelected(isAvailable){
         console.log(isAvailable);
         if(isAvailable){
-            setChosenSeat(true);
+            setChosenSeat(!chosenSeat);
         }
 
     }
