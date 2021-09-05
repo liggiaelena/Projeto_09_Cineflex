@@ -4,10 +4,12 @@ import "./PageFinished.css"
 import {Link} from "react-router-dom"
 
 export default function PageFinished(props){
-    //const reserve=props.reserve;
+   // let reserve=props.reserve;
     const seatsChosen=props.seatsChosen;
     const info=props.info;
     console.log(info, seatsChosen)
+  //  console.log(reserve);
+
 
 
     return(

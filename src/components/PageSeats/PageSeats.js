@@ -21,7 +21,7 @@ export default function PageSeats(props){
     const [name, setBuyerName] = useState("");
     const [cpf, setBuyerCpf] = useState("");
     const [reserve, setReserve] = useState({});
-    const [allComplete, setAllComplite]=useState(false)
+    const [allComplete, setAllComplite]=useState(true)
    
     useEffect(()=>{
 
@@ -32,40 +32,29 @@ export default function PageSeats(props){
             setPosterURL(response.data.movie.posterURL);
             setDay(response.data.day.weekday + " - "+response.data.name)
             updateDayAndTime(response.data.day.date +" "+response.data.name)
-            console.log(info);
             
             
-            console.log(response.data)
         })
     },[]);
 
-   function reserveSeats(){
+   function updatereserveSeats(){
 
-    if(name === "" || cpf === ""){
-        console.log(name);
-        return false;
-    }
-    else{
-        const id = seatsId;
+        const ids = seatsId;
        
-       setReserve({id,name,cpf});
+       setReserve({ids,name,cpf});
        console.log(reserve);
 
        updateSeats(seatsName);
-       console.log(seatsName);
        updateNameAndCpf(name,cpf);
-       reserveSeats2();
+    
        setAllComplite(true);
-       return true;
-    }
        
        
    }
-   function reserveSeats2(){
-       console.log(reserve);
-         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",reserve);
-    
-        promisse.then((evet)=>console.log(evet,"deu bom"))
+   function reserveSeats(){
+const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",reserve);
+    console.log(reserve);
+    promisse.then((evet)=>console.log(evet,"deu bom"))
    }
 
   
@@ -99,9 +88,9 @@ console.log(info);
             </div>
             <div className="personal-infos">
                 <p>Nome do comprador</p>
-                <input placeholder="Digite seu nome..." value={name} onChange={(event)=>setBuyerName(event.target.value)}></input>
+                <input placeholder="Digite seu nome..." value={name} onChange={(event)=>{setBuyerName(event.target.value); updatereserveSeats();}}></input>
                 <p>Nome do comprador</p>
-                <input placeholder="Digite seu CPF..." value={cpf} onChange={(event)=>setBuyerCpf(event.target.value)}></input>
+                <input placeholder="Digite seu CPF..." value={cpf} onChange={(event)=>{setBuyerCpf(event.target.value); updatereserveSeats();}}></input>
             </div>
             <Link to={allComplete? "/sucesso":`/assentos/${params.idSessao}`} reserve={reserve}>
              <button className="button-seats" onClick={reserveSeats}>Reservar assentos(s)</button>
