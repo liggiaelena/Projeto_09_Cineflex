@@ -21,6 +21,7 @@ export default function PageSeats(props){
     const [name, setBuyerName] = useState("");
     const [cpf, setBuyerCpf] = useState("");
     const [reserve, setReserve] = useState({});
+    const [allComplete, setAllComplite]=useState(false)
    
     useEffect(()=>{
 
@@ -39,7 +40,13 @@ export default function PageSeats(props){
     },[]);
 
    function reserveSeats(){
-       const id = seatsId;
+
+    if(name === "" || cpf === ""){
+        console.log(name);
+        return false;
+    }
+    else{
+        const id = seatsId;
        
        setReserve({id,name,cpf});
        console.log(reserve);
@@ -47,9 +54,18 @@ export default function PageSeats(props){
        updateSeats(seatsName);
        console.log(seatsName);
        updateNameAndCpf(name,cpf);
-
-     
+       reserveSeats2();
+       setAllComplite(true);
+       return true;
+    }
        
+       
+   }
+   function reserveSeats2(){
+       console.log(reserve);
+         const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",reserve);
+    
+        promisse.then((evet)=>console.log(evet,"deu bom"))
    }
 
   
@@ -87,7 +103,7 @@ console.log(info);
                 <p>Nome do comprador</p>
                 <input placeholder="Digite seu CPF..." value={cpf} onChange={(event)=>setBuyerCpf(event.target.value)}></input>
             </div>
-            <Link to="/sucesso" reserve={reserve}>
+            <Link to={allComplete? "/sucesso":`/assentos/${params.idSessao}`} reserve={reserve}>
              <button className="button-seats" onClick={reserveSeats}>Reservar assentos(s)</button>
             </Link>
            
