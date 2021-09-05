@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Seat from "./Seat";
 import Bottom from "../Bottom/Bottom";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
 
 export default function PageSeats(props){
     const updateDayAndTime=props.updateDayAndTime;

@@ -1,6 +1,7 @@
 import "./PageFinished.css"
 import { useEffect} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom"
 
 export default function PageFinished(props){
     const reserve=props.reserve;
@@ -35,7 +36,10 @@ export default function PageFinished(props){
                 <p>{info.name}</p>
                 <p>{info.cpf}</p>
             </div>
+            <Link to="/">
             <button className="button-seats">Voltar pra Home</button>
+            </Link>
+            
         </div>
     );
 }
