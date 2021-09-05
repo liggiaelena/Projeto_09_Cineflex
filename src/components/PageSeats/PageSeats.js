@@ -21,7 +21,7 @@ export default function PageSeats(props){
     const [name, setBuyerName] = useState("");
     const [cpf, setBuyerCpf] = useState("");
     const [reserve, setReserve] = useState({});
-    const [allComplete, setAllComplite]=useState(true)
+    const [allComplete, setAllComplite]=useState(false)
    
     useEffect(()=>{
 
@@ -39,6 +39,13 @@ export default function PageSeats(props){
 
    function updatereserveSeats(){
 
+    if(name === "" || cpf ===""){
+        setAllComplite(false);
+    }
+    else{
+        setAllComplite(true);
+    }
+
         const ids = seatsId;
        
        setReserve({ids,name,cpf});
@@ -47,7 +54,7 @@ export default function PageSeats(props){
        updateSeats(seatsName);
        updateNameAndCpf(name,cpf);
     
-       setAllComplite(true);
+       
        
        
    }
